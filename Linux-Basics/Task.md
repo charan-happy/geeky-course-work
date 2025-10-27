@@ -54,3 +54,68 @@ How do you verify the SSH port configuration after making the change?
 What is the difference between normal firewall rules and rich rules in firewalld?
 
 Provide specific scenarios where rich rules are more beneficial than normal rules.
+
+
+## commands-list
+
+```
+# to disable ipv5 using sysctl temporarily
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+
+```
+sudo vi /etc/sysctl.conf #configuration file
+sudo sysctl -p # To apply changes 
+
+```
+# verification
+
+sysctl net.ipv6.conf.all.disable_ipv6
+sysctl net.ipv6.conf.default.disable_ipv6
+
+# if we get 1 in the output,then it confirms that ipv6 is disabled at runtime
+```
+
+sudo cat /etc/default/grub --> 
+sudo update-grub --> update grub configuration
+
+sudo reboot
+cat /proc/cmdline
+
+```
+sudo apt update
+sudo apt install firewalld -y
+sudo systemctl enable firewalld
+sudo systemctl start firewalld
+sudo systemctl status firewalld
+
+```
+
+`sudo firewall-cmd --permanent --add-port=10022/tcp`
+
+`sudo firewall-cmd --permanent --remove-service=ssh`
+
+`sudo firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="192.168.1.0/24" reject'`
+
+`sudo firewall-cmd --permanent --add-service=nfs` --> Allow nfs service
+`sudo firewall-cmd --reload`
+sudo firewall-cmd --list-all
+```
+sudo firewall-cmd --list-services
+sudo firewall-cmd --list-ports
+
+```
+
+`sudo firewall-cmd --list-rich-rules`
+`sudo aa-status` --> check app armor status
+```
+sudo systemctl stop apparmor
+sudo systemctl disable apparmor
+```
+
+`sudo grep -i "^Port" /etc/ssh/sshd_config` --> To view ssh daemon config file
+sudo ss -tlnp | grep sshd
+
+sudo vim /etc/ssh/sshd_config
+
