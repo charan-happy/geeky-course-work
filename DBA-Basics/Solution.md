@@ -79,8 +79,31 @@ This allows MySQL to look up names faster instead of scanning every row.
 ## 4. Backup and Restore
 
 
+![alt text](image-34.png)
+
+![alt text](image-33.png)
 ## 5. Using pg_hba.conf for Authentication
 
+![alt text](image-32.png)
+
+![alt text](image-29.png)
+
+
+![alt text](image-31.png)
+
+![alt text](image-30.png)
+
+--> the `pg_hba.conf` (PostgreSQL Host-Based Authentication) file is one of the most important security control files in PostgreSQL.
+- It defines who can connect, from where, and how they authenticate
+
+
+| Role                        | Description                                                                                                   |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Access Control**          | Specifies which users can access which databases.                                                             |
+| **Connection Type Control** | Defines whether connections are local (socket) or remote (host, IP).                                          |
+| **Authentication Method**   | Controls how users prove identity — options include `trust`, `md5`, `scram-sha-256`, `peer`, `password`, etc. |
+| **Network Security**        | Can restrict access by IP range (e.g., `host all all 192.168.1.0/24 md5`).                                    |
+| **Layer of Defense**        | Even if your DB port is open, unauthorized users can’t connect without being listed in this file.             |
 
 
 

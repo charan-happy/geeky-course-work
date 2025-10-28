@@ -23,6 +23,10 @@ Screenshots or logs showing data replication between the master and slave.
 
 Troubleshooting steps taken (if any issues arose) and their resolution.
 
+
+
+
+
 ## Assignment 2: Setting Up Streaming Replication in PostgreSQL
 Task:
 
@@ -45,6 +49,7 @@ A detailed report of the setup process including configuration files and command
 A working example where data from the primary is replicated to the standby server.
 
 Screenshots or logs showing the status of replication and data consistency between primary and standby.
+
 
 ## Assignment 3: Monitoring and Backup of Replication
 Task:
