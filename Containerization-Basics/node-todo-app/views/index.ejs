@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Modern TODO — Dockerized</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-gray-900">
+  <div class="max-w-3xl mx-auto p-6">
+    <div class="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-6">
+      <h1 class="text-3xl font-extrabold text-center mb-4">✨ Modern TODO</h1>
+      <p class="text-sm text-center text-gray-600 mb-4">Simple TODO app — add, toggle, delete. Persisted in a JSON file.</p>
+
+      <form id="todoForm" class="flex gap-3 mb-4">
+        <input id="todoInput" placeholder="What do you want to do?" class="flex-1 p-3 rounded-lg border focus:outline-none" />
+        <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 rounded-lg">Add</button>
+      </form>
+
+      <ul id="todoList" class="space-y-2">
+        <% todos.forEach(function(t){ %>
+          <li data-id="<%= t.id %>" class="flex items-center justify-between p-3 rounded-lg border">
+            <div class="flex items-center gap-3">
+              <input type="checkbox" class="todo-check" <%= t.done ? 'checked' : '' %> />
+              <span class="todo-text <%= t.done ? 'line-through text-gray-400' : '' %>"><%= t.text %></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="delete-btn text-red-500">Delete</button>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+
+      <p class="mt-4 text-xs text-gray-500">Tip: open two tabs to test concurrent usage.</p>
+    </div>
+  </div>
+
+  <script>
+    // bootstrap initial todos into client-side OS for immediate view
+    window.__INITIAL_TODOS__ = <%- JSON.stringify(todos) %>
+  </script>
+  <script src="/public/app.js"></script>
+</body>
+</html>
+
