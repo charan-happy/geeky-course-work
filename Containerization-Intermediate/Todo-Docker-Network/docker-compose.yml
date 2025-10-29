@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  publisher:
+    build:
+      context: ./publisher
+      dockerfile: Dockerfile
+    image: publisher:local
+    env_file:
+      - ./publisher/publisher.env
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./publisher/data:/app/data     # persist local publisher data (optional)
+    depends_on:
+      - subscriber
+
+  subscriber:
+    build:
+      context: ./subscriber
+      dockerfile: Dockerfile
+    image: subscriber:local
+    env_file:
+      - ./subscriber/subscriber.env
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./subscriber/data:/app/data
+
