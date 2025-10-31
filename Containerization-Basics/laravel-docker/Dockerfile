@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y git zip unzip
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
+COPY .env /var/www/html/.env
 
 # copy app source
 COPY . .
